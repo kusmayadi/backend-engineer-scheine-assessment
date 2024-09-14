@@ -1,15 +1,22 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import { AppDataSource } from "./data-source";
 
 dotenv.config();
 
+const { PORT = 3000 } = process.env;
+
 const app: Express = express();
-const port = process.env.PORT || 3000;
+app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Rose is red. Violet is blue.");
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+AppDataSource.initialize()
+  .then(async () => {
+    app.listen(PORT, () => {
+      console.log(`[server]: Server is running at http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => console.log(error));
