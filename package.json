@@ -8,16 +8,22 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "typeorm": "typeorm-ts-node-commonjs",
+    "migration:run": "npm run typeorm migration:run -- -d ./src/data-source.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d ./src/data-source.ts",
+    "seed:development": "ts-node ./src/database/seeders/development.seeder.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kusmayadi",
   "license": "ISC",
   "dependencies": {
+    "@jorgebodega/typeorm-seeding": "^7.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "faker": "^6.6.6",
     "pg": "^8.12.0",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "typeorm-extension": "^3.6.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

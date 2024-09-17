@@ -1,4 +1,5 @@
 import express, { Express, Request, Response } from "express";
+import "reflect-metadata";
 import dotenv from "dotenv";
 import { AppDataSource } from "./data-source";
 
